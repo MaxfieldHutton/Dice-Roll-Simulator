@@ -3,6 +3,7 @@ import matplotlib
 matplotlibversion = matplotlib.__version__
 import matplotlib.pyplot as plt
 import numpy as np
+from colorama import Fore, Back, Style
 import os
 
 def cls():
@@ -10,8 +11,8 @@ def cls():
 
 def print_info():
     cls()
-    print("########################################")
-    print("Element's Dice Roll Simulator ver: 1.0.1")
+    print(f"{Fore.WHITE}########################################")
+    print("Element's Dice Roll Simulator ver: 1.1.0")
     print("matplotlib: " + matplotlibversion)
     print("numpy: "      + np.__version__)
     print("########################################\n\n")
@@ -24,31 +25,31 @@ def get_dice_size():
     dice_size_chosen = False
     while not dice_size_chosen:
         try:
-            dice_size_attempt = int(input("Please Enter the Dice Size (EX: 6 for a D6) \n"))
+            dice_size_attempt = int(input(f"{Fore.WHITE}Please Enter the Dice Size (EX: 6 for a D6) \n"))
             if dice_size_attempt < 1:
                 raise Exception("Input too small")
         except:
             cls()
-            print("Invalid dice size, try again \n")
+            print(f"{Fore.YELLOW}Invalid dice size, try again {Fore.WHITE}\n")
         else:
             dice_size_chosen = True
     return dice_size_attempt
  
 dice_size = get_dice_size()
 print_info()
-print("Dice Size = " + str(dice_size))
+print(f"{Fore.GREEN}Dice Size = " + str(dice_size))
 
 ### dice_amount will be how many dice we roll in a trial
 def get_dice_amount():
     dice_amount_chosen = False
     while not dice_amount_chosen:
         try:
-            dice_amount_attempt = int(input("Please Enter the amount of dice to roll in a trial \n"))
+            dice_amount_attempt = int(input(f"{Fore.WHITE}Please Enter the amount of dice to roll in a trial \n"))
             if dice_amount_attempt < 1:
                 raise Exception("Input too small")
         except:
             cls()
-            print("Invalid dice amount, try again \n")
+            print(f"{Fore.YELLOW}Invalid dice amount, try again \n{Fore.WHITE}")
         else:
             print("Dice Amount = " + str(dice_amount_attempt))
             dice_amount_chosen = True
@@ -56,20 +57,20 @@ def get_dice_amount():
  
 dice_amount = get_dice_amount()
 print_info()
-print("Dice Size = " + str(dice_size))
-print("Dice Size = " + str(dice_amount))
+print(f"{Fore.GREEN}Dice Size = " + str(dice_size))
+print(f"{Fore.GREEN}Dice Size = " + str(dice_amount))
 
 ### dice_trials will be how many times we roll a set of dice
 def get_dice_trials():
     dice_trials_chosen = False
     while not dice_trials_chosen:
         try:
-            dice_trials_attempt = int(input("Please Enter the amount of trials \n"))
+            dice_trials_attempt = int(input(f"{Fore.WHITE}Please Enter the amount of trials \n"))
             if dice_trials_attempt < 1:
                 raise Exception("Input too small")
         except:
             cls()
-            print("Invalid trial amount, try again \n")
+            print(f"{Fore.YELLOW}Invalid trial amount, try again \n{Fore.WHITE}")
         else:
             print("Trial Amount = " + str(dice_trials_attempt))
             dice_trials_chosen = True
@@ -77,9 +78,9 @@ def get_dice_trials():
  
 dice_trials = get_dice_trials()
 print_info()
-print("Dice Size = "    + str(dice_size))
-print("Dice Amount = "  + str(dice_amount))
-print("Trial Amount = " + str(dice_trials))
+print(f"{Fore.GREEN}Dice Size = "    + str(dice_size))
+print(f"{Fore.GREEN}Dice Amount = "  + str(dice_amount))
+print(f"{Fore.GREEN}Trial Amount = " + str(dice_trials))
 
 
 total_output = []
