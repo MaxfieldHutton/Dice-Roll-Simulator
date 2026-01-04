@@ -4,6 +4,7 @@ matplotlibversion = matplotlib.__version__
 import matplotlib.pyplot as plt
 import numpy as np
 from colorama import Fore, Back, Style
+from tqdm import tqdm
 import os
 
 def cls():
@@ -12,7 +13,7 @@ def cls():
 def print_info():
     cls()
     print(f"{Fore.WHITE}########################################")
-    print("Element's Dice Roll Simulator ver: 1.1.0")
+    print("Element's Dice Roll Simulator ver: 1.2.0")
     print("matplotlib: " + matplotlibversion)
     print("numpy: "      + np.__version__)
     print("########################################\n\n")
@@ -97,13 +98,16 @@ for i in range(total_output[0], max(total_output)+1):
     ##  with 2 D6's this would be 2,3,4,5,6,7,8,9,10,11,12
     x_axis.append(i)
 
+print(f"{Fore.CYAN}")
 y_axis = []
-for i in range(0, len(x_axis)):
-    toAdd = 0
-    for j in range(0, len(total_output)):
-        if x_axis[i] == total_output[j]:
-            toAdd += 1
-    y_axis.append(toAdd)
+with tqdm(total=len(x_axis)) as pb:
+    for i in range(0, len(x_axis)):
+        toAdd = 0
+        for j in range(0, len(total_output)):
+            if x_axis[i] == total_output[j]:
+                toAdd += 1
+        y_axis.append(toAdd)
+        pb.update()
 
 
 
