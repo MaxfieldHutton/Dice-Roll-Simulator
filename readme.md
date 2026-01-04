@@ -8,5 +8,5 @@ This tool must be run from a command line. From my own testing this will not wor
 
 Make sure you have numpy and matplotlib installed. You can run the code below to install them and their dependencies
 ```
-pip install requirements.txt
+pip install -r requirements.txt
 ```
