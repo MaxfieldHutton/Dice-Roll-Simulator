@@ -1,1 +1,1 @@
-## This tool simulates dice rolls and outputs the results to a CSV file
+## This tool simulates dice rolls and outputs the results to a bar graph
