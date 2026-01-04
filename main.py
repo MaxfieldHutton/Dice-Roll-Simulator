@@ -8,7 +8,7 @@ import os
 def cls():
     os.system('cls' if os.name=='nt' else 'clear')
 
-def printInfo():
+def print_info():
     cls()
     print("########################################")
     print("Element's Dice Roll Simulator ver: 1.0")
@@ -17,85 +17,85 @@ def printInfo():
     print("########################################\n\n")
 
 
-printInfo()
+print_info()
 
-### DiceSize is the amount of sides the dice have. EX: DiceSize = 6, would be a D6
-def GetDiceSize():
-    DiceSizeChosen = False
-    while not DiceSizeChosen:
+### dice_size is the amount of sides the dice have. EX: dice_size = 6, would be a D6
+def get_dice_size():
+    dice_size_chosen = False
+    while not dice_size_chosen:
         try:
-            DiceSizeAttempt = int(input("Please Enter the Dice Size (EX: 6 for a D6) \n"))
+            dice_size_attempt = int(input("Please Enter the Dice Size (EX: 6 for a D6) \n"))
         except:
             print("Invalid dice size, try again \n")
         else:
-            DiceSizeChosen = True
-    return DiceSizeAttempt
+            dice_size_chosen = True
+    return dice_size_attempt
  
-DiceSize = GetDiceSize()
-printInfo()
-print("Dice Size = " + str(DiceSize))
+dice_size = get_dice_size()
+print_info()
+print("Dice Size = " + str(dice_size))
 
-### DiceAmount will be how many dice we roll in a trial
-def GetDiceAmount():
-    DiceAmountChosen = False
-    while not DiceAmountChosen:
+### dice_amount will be how many dice we roll in a trial
+def get_dice_amount():
+    dice_amount_chosen = False
+    while not dice_amount_chosen:
         try:
-            DiceAmountAttempt = int(input("Please Enter the amount of dice to roll in a trial \n"))
+            dice_amount_attempt = int(input("Please Enter the amount of dice to roll in a trial \n"))
         except:
             print("Invalid dice amount, try again \n")
         else:
-            print("Dice Amount = " + str(DiceAmountAttempt))
-            DiceAmountChosen = True
-    return DiceAmountAttempt
+            print("Dice Amount = " + str(dice_amount_attempt))
+            dice_amount_chosen = True
+    return dice_amount_attempt
  
-DiceAmount = GetDiceAmount()
-printInfo()
-print("Dice Size = " + str(DiceSize))
-print("Dice Size = " + str(DiceAmount))
+dice_amount = get_dice_amount()
+print_info()
+print("Dice Size = " + str(dice_size))
+print("Dice Size = " + str(dice_amount))
 
-### DiceTrials will be how many times we roll a set of dice
-def GetDiceTrials():
-    DiceTrialsChosen = False
-    while not DiceTrialsChosen:
+### dice_trials will be how many times we roll a set of dice
+def get_dice_trials():
+    dice_trials_chosen = False
+    while not dice_trials_chosen:
         try:
-            DiceTrialsAttempt = int(input("Please Enter the amount of trials \n"))
+            dice_trials_attempt = int(input("Please Enter the amount of trials \n"))
         except:
             print("Invalid trial amount, try again \n")
         else:
-            print("Trial Amount = " + str(DiceTrialsAttempt))
-            DiceTrialsChosen = True
-    return DiceTrialsAttempt
+            print("Trial Amount = " + str(dice_trials_attempt))
+            dice_trials_chosen = True
+    return dice_trials_attempt
  
-DiceTrials = GetDiceTrials()
-printInfo()
-print("Dice Size = "    + str(DiceSize))
-print("Dice Amount = "  + str(DiceAmount))
-print("Trial Amount = " + str(DiceTrials))
+dice_trials = get_dice_trials()
+print_info()
+print("Dice Size = "    + str(dice_size))
+print("Dice Amount = "  + str(dice_amount))
+print("Trial Amount = " + str(dice_trials))
 
 
-TotalOutput = []
-for i in range(DiceTrials):
-    TrialOutput = []
-    for j in range(DiceAmount):
-        TrialOutput.append(random.randrange(1, DiceSize+1))
-    TotalOutput.append(sum(TrialOutput))
-TotalOutput.sort()
+total_output = []
+for i in range(dice_trials):
+    trial_output = []
+    for j in range(dice_amount):
+        trial_output.append(random.randrange(1, dice_size+1))
+    total_output.append(sum(trial_output))
+total_output.sort()
 
 
-xAxis = []
-for i in range(TotalOutput[0], max(TotalOutput)+1):
+x_axis = []
+for i in range(total_output[0], max(total_output)+1):
     ##  with 2 D6's this would be 2,3,4,5,6,7,8,9,10,11,12
-    xAxis.append(i)
+    x_axis.append(i)
 
-yAxis = []
-for i in range(0, len(xAxis)):
+y_axis = []
+for i in range(0, len(x_axis)):
     toAdd = 0
-    for j in range(0, len(TotalOutput)):
-        if xAxis[i] == TotalOutput[j]:
+    for j in range(0, len(total_output)):
+        if x_axis[i] == total_output[j]:
             toAdd += 1
-    yAxis.append(toAdd)
+    y_axis.append(toAdd)
 
 
 
-plt.bar(xAxis, yAxis)
+plt.bar(x_axis, y_axis)
 plt.show()
