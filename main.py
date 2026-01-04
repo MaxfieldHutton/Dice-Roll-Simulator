@@ -11,7 +11,7 @@ def cls():
 def print_info():
     cls()
     print("########################################")
-    print("Element's Dice Roll Simulator ver: 1.0")
+    print("Element's Dice Roll Simulator ver: 1.0.1")
     print("matplotlib: " + matplotlibversion)
     print("numpy: "      + np.__version__)
     print("########################################\n\n")
@@ -25,7 +25,10 @@ def get_dice_size():
     while not dice_size_chosen:
         try:
             dice_size_attempt = int(input("Please Enter the Dice Size (EX: 6 for a D6) \n"))
+            if dice_size_attempt < 1:
+                raise Exception("Input too small")
         except:
+            cls()
             print("Invalid dice size, try again \n")
         else:
             dice_size_chosen = True
@@ -41,7 +44,10 @@ def get_dice_amount():
     while not dice_amount_chosen:
         try:
             dice_amount_attempt = int(input("Please Enter the amount of dice to roll in a trial \n"))
+            if dice_amount_attempt < 1:
+                raise Exception("Input too small")
         except:
+            cls()
             print("Invalid dice amount, try again \n")
         else:
             print("Dice Amount = " + str(dice_amount_attempt))
@@ -59,7 +65,10 @@ def get_dice_trials():
     while not dice_trials_chosen:
         try:
             dice_trials_attempt = int(input("Please Enter the amount of trials \n"))
+            if dice_trials_attempt < 1:
+                raise Exception("Input too small")
         except:
+            cls()
             print("Invalid trial amount, try again \n")
         else:
             print("Trial Amount = " + str(dice_trials_attempt))
