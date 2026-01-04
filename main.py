@@ -1,19 +1,19 @@
 import random
 import matplotlib
-matplotlibversion = matplotlib.__version__
+matplotlibversion: str = matplotlib.__version__
 import matplotlib.pyplot as plt
 import numpy as np
-from colorama import Fore, Back, Style
+from colorama import Fore
 from tqdm import tqdm
 import os
 
-def cls():
+def cls() -> None:
     os.system('cls' if os.name=='nt' else 'clear')
 
-def print_info():
+def print_info() -> None:
     cls()
-    print(f"{Fore.WHITE}########################################")
-    print("Element's Dice Roll Simulator ver: 1.2.0")
+    print(f"{Fore.CYAN}########################################")
+    print("🎲 Element's Dice Roll Simulator 🎲 ver: 1.2.0")
     print("matplotlib: " + matplotlibversion)
     print("numpy: "      + np.__version__)
     print("########################################\n\n")
@@ -22,7 +22,8 @@ def print_info():
 print_info()
 
 ### dice_size is the amount of sides the dice have. EX: dice_size = 6, would be a D6
-def get_dice_size():
+def get_dice_size() -> int:
+    dice_size_attempt = 0
     dice_size_chosen = False
     while not dice_size_chosen:
         try:
@@ -36,12 +37,13 @@ def get_dice_size():
             dice_size_chosen = True
     return dice_size_attempt
  
-dice_size = get_dice_size()
+dice_size: int = get_dice_size()
 print_info()
 print(f"{Fore.GREEN}Dice Size = " + str(dice_size))
 
 ### dice_amount will be how many dice we roll in a trial
-def get_dice_amount():
+def get_dice_amount() -> int:
+    dice_amount_attempt = 0
     dice_amount_chosen = False
     while not dice_amount_chosen:
         try:
@@ -56,13 +58,14 @@ def get_dice_amount():
             dice_amount_chosen = True
     return dice_amount_attempt
  
-dice_amount = get_dice_amount()
+dice_amount: int = get_dice_amount()
 print_info()
 print(f"{Fore.GREEN}Dice Size = " + str(dice_size))
 print(f"{Fore.GREEN}Dice Size = " + str(dice_amount))
 
 ### dice_trials will be how many times we roll a set of dice
-def get_dice_trials():
+def get_dice_trials() -> int:
+    dice_trials_attempt = 0
     dice_trials_chosen = False
     while not dice_trials_chosen:
         try:
@@ -77,7 +80,7 @@ def get_dice_trials():
             dice_trials_chosen = True
     return dice_trials_attempt
  
-dice_trials = get_dice_trials()
+dice_trials: int = get_dice_trials()
 print_info()
 print(f"{Fore.GREEN}Dice Size = "    + str(dice_size))
 print(f"{Fore.GREEN}Dice Amount = "  + str(dice_amount))
@@ -85,9 +88,9 @@ print(f"{Fore.GREEN}Trial Amount = " + str(dice_trials))
 
 print(f"{Fore.WHITE} Doing Math: {Fore.CYAN}")
 with tqdm(total=dice_trials) as pb:
-    total_output = []
+    total_output: list[int] = []
     for i in range(dice_trials):
-        trial_output = []
+        trial_output: list[int] = []
         for j in range(dice_amount):
             trial_output.append(random.randrange(1, dice_size+1))
         total_output.append(sum(trial_output))
@@ -95,13 +98,13 @@ with tqdm(total=dice_trials) as pb:
     total_output.sort()
 
 
-x_axis = []
+x_axis: list[int] = []
 for i in range(total_output[0], max(total_output)+1):
     ##  with 2 D6's this would be 2,3,4,5,6,7,8,9,10,11,12
     x_axis.append(i)
     
 
-y_axis = []
+y_axis: list[int] = []
 print(f"{Fore.WHITE} Rendering: {Fore.BLUE}")
 with tqdm(total=len(x_axis)) as pb:
     for i in range(0, len(x_axis)):
@@ -112,9 +115,7 @@ with tqdm(total=len(x_axis)) as pb:
         y_axis.append(toAdd)
         pb.update()
         
-    
 
 
-
-plt.bar(x_axis, y_axis)
-plt.show()
+plt.bar(x_axis, y_axis) # type: ignore
+plt.show()              # type: ignore
