@@ -83,23 +83,26 @@ print(f"{Fore.GREEN}Dice Size = "    + str(dice_size))
 print(f"{Fore.GREEN}Dice Amount = "  + str(dice_amount))
 print(f"{Fore.GREEN}Trial Amount = " + str(dice_trials))
 
-
-total_output = []
-for i in range(dice_trials):
-    trial_output = []
-    for j in range(dice_amount):
-        trial_output.append(random.randrange(1, dice_size+1))
-    total_output.append(sum(trial_output))
-total_output.sort()
+print(f"{Fore.WHITE} Doing Math: {Fore.CYAN}")
+with tqdm(total=dice_trials) as pb:
+    total_output = []
+    for i in range(dice_trials):
+        trial_output = []
+        for j in range(dice_amount):
+            trial_output.append(random.randrange(1, dice_size+1))
+        total_output.append(sum(trial_output))
+        pb.update()
+    total_output.sort()
 
 
 x_axis = []
 for i in range(total_output[0], max(total_output)+1):
     ##  with 2 D6's this would be 2,3,4,5,6,7,8,9,10,11,12
     x_axis.append(i)
+    
 
-print(f"{Fore.CYAN}")
 y_axis = []
+print(f"{Fore.WHITE} Rendering: {Fore.BLUE}")
 with tqdm(total=len(x_axis)) as pb:
     for i in range(0, len(x_axis)):
         toAdd = 0
@@ -108,6 +111,8 @@ with tqdm(total=len(x_axis)) as pb:
                 toAdd += 1
         y_axis.append(toAdd)
         pb.update()
+        
+    
 
 
 
